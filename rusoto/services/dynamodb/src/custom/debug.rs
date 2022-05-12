@@ -1,4 +1,5 @@
 use crate::generated::AttributeValue;
+use itertools::Itertools;
 use std::fmt;
 
 impl fmt::Debug for AttributeValue {
@@ -47,7 +48,10 @@ impl fmt::Debug for AttributeValue {
         // that need to be wrapped too
 
         if let Some(val) = m {
-            return f.debug_map().entries(val).finish();
+            let entries = val
+                .iter()
+                .sorted_unstable_by_key(|(key, _)| *key);
+            return f.debug_map().entries(entries).finish();
         }
 
         if let Some(val) = l {
