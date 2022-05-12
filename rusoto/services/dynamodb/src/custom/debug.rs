@@ -1,4 +1,5 @@
 use crate::generated::AttributeValue;
+use itertools::Itertools;
 use std::fmt;
 
 impl fmt::Debug for AttributeValue {
