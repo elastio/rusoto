@@ -50,7 +50,7 @@ impl fmt::Debug for AttributeValue {
         if let Some(val) = m {
             let entries = val
                 .iter()
-                .map(|(key, value)| (key, value))
+                .map(|(key, value)| (key, format!("{:#?}", value)))
                 .sorted_unstable_by_key(|(key, _)| *key);
             return f.debug_map().entries(entries).finish();
         }
