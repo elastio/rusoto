@@ -38,8 +38,11 @@ use std::str::FromStr;
 /// `CnNorth1` is currently untested due to Rusoto maintainers not having access to AWS China.
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub enum Region {
-    /// Region that covers the Eastern part of Asia Pacific
+    /// Region that covers the Eastern part of Asia Pacific (Hong Kong)
     ApEast1,
+
+    /// Region that covers the Eastern part of Asia Pacific (Taiwan, Taipei)
+    ApEast2,
 
     /// Region that covers the North-Eastern part of Asia Pacific
     ApNortheast1,
@@ -50,20 +53,44 @@ pub enum Region {
     /// Region that covers the North-Eastern part of Asia Pacific
     ApNortheast3,
 
-    /// Region that covers the Southern part of Asia Pacific
+    /// Region that covers the Southern part of Asia Pacific (India, Mumbai)
     ApSouth1,
 
-    /// Region that covers the South-Eastern part of Asia Pacific
+    /// Region that covers the Southern part of Asia Pacific (India, Hyderabad)
+    ApSouth2,
+
+    /// Region that covers the South-Eastern part of Asia Pacific (Singapore)
     ApSoutheast1,
 
-    /// Region that covers the South-Eastern part of Asia Pacific
+    /// Region that covers the South-Eastern part of Asia Pacific (Australia, Sydney)
     ApSoutheast2,
 
-    /// Region that covers Canada
+    /// Region that covers the South-Eastern part of Asia Pacific (Indonesia, Jakarta)
+    ApSoutheast3,
+
+    /// Region that covers the South-Eastern part of Asia Pacific (Australia, Melbourne)
+    ApSoutheast4,
+
+    /// Region that covers the South-Eastern part of Asia Pacific (Malaysia)
+    ApSoutheast5,
+
+    /// Region that covers the South-Eastern part of Asia Pacific (New Zealand)
+    ApSoutheast6,
+
+    /// Region that covers the South-Eastern part of Asia Pacific (Thailand)
+    ApSoutheast7,
+
+    /// Region that covers the Central part of Canada
     CaCentral1,
 
-    /// Region that covers Central Europe
+    /// Region that covers the Western part of Canada (Calgary)
+    CaWest1,
+
+    /// Region that covers Central Europe (Germany, Frankfurt)
     EuCentral1,
+
+    /// Region that covers Central Europe (Switzerland, Zurich)
+    EuCentral2,
 
     /// Region that covers Western Europe
     EuWest1,
@@ -77,11 +104,23 @@ pub enum Region {
     /// Region that covers Northern Europe
     EuNorth1,
 
-    /// Region that covers Southern Europe
+    /// Region that covers Southern Europe (Italy, Milan)
     EuSouth1,
+
+    /// Region that covers Southern Europe (Spain)
+    EuSouth2,
+
+    /// Region that covers Israel (Tel Aviv)
+    IlCentral1,
+
+    /// Middle East UAE
+    MeCentral1,
 
     /// Bahrain, Middle East South
     MeSouth1,
+
+    /// Region that covers Central part of Mexico
+    MxCentral1,
 
     /// Region that covers South America
     SaEast1,
@@ -138,20 +177,33 @@ impl Region {
     pub fn name(&self) -> &str {
         match *self {
             Region::ApEast1 => "ap-east-1",
+            Region::ApEast2 => "ap-east-2",
             Region::ApNortheast1 => "ap-northeast-1",
             Region::ApNortheast2 => "ap-northeast-2",
             Region::ApNortheast3 => "ap-northeast-3",
             Region::ApSouth1 => "ap-south-1",
+            Region::ApSouth2 => "ap-south-2",
             Region::ApSoutheast1 => "ap-southeast-1",
             Region::ApSoutheast2 => "ap-southeast-2",
+            Region::ApSoutheast3 => "ap-southeast-3",
+            Region::ApSoutheast4 => "ap-southeast-4",
+            Region::ApSoutheast5 => "ap-southeast-5",
+            Region::ApSoutheast6 => "ap-southeast-6",
+            Region::ApSoutheast7 => "ap-southeast-7",
             Region::CaCentral1 => "ca-central-1",
+            Region::CaWest1 => "ca-west-1",
             Region::EuCentral1 => "eu-central-1",
+            Region::EuCentral2 => "eu-central-2",
             Region::EuWest1 => "eu-west-1",
             Region::EuWest2 => "eu-west-2",
             Region::EuWest3 => "eu-west-3",
             Region::EuNorth1 => "eu-north-1",
             Region::EuSouth1 => "eu-south-1",
+            Region::EuSouth2 => "eu-south-2",
+            Region::IlCentral1 => "il-central-1",
+            Region::MeCentral1 => "me-central-1",
             Region::MeSouth1 => "me-south-1",
+            Region::MxCentral1 => "mx-central-1",
             Region::SaEast1 => "sa-east-1",
             Region::UsEast1 => "us-east-1",
             Region::UsEast2 => "us-east-2",
@@ -238,20 +290,33 @@ impl FromStr for Region {
         let v: &str = &s.to_lowercase();
         match v {
             "ap-east-1" | "apeast1" => Ok(Region::ApEast1),
+            "ap-east-2" | "apeast2" => Ok(Region::ApEast2),
             "ap-northeast-1" | "apnortheast1" => Ok(Region::ApNortheast1),
             "ap-northeast-2" | "apnortheast2" => Ok(Region::ApNortheast2),
             "ap-northeast-3" | "apnortheast3" => Ok(Region::ApNortheast3),
             "ap-south-1" | "apsouth1" => Ok(Region::ApSouth1),
+            "ap-south-2" | "apsouth2" => Ok(Region::ApSouth2),
             "ap-southeast-1" | "apsoutheast1" => Ok(Region::ApSoutheast1),
             "ap-southeast-2" | "apsoutheast2" => Ok(Region::ApSoutheast2),
+            "ap-southeast-3" | "apsoutheast3" => Ok(Region::ApSoutheast3),
+            "ap-southeast-4" | "apsoutheast4" => Ok(Region::ApSoutheast4),
+            "ap-southeast-5" | "apsoutheast5" => Ok(Region::ApSoutheast5),
+            "ap-southeast-6" | "apsoutheast6" => Ok(Region::ApSoutheast6),
+            "ap-southeast-7" | "apsoutheast7" => Ok(Region::ApSoutheast7),
             "ca-central-1" | "cacentral1" => Ok(Region::CaCentral1),
+            "ca-west-1" | "cawest1" => Ok(Region::CaWest1),
             "eu-central-1" | "eucentral1" => Ok(Region::EuCentral1),
+            "eu-central-2" | "eucentral2" => Ok(Region::EuCentral2),
             "eu-west-1" | "euwest1" => Ok(Region::EuWest1),
             "eu-west-2" | "euwest2" => Ok(Region::EuWest2),
             "eu-west-3" | "euwest3" => Ok(Region::EuWest3),
             "eu-north-1" | "eunorth1" => Ok(Region::EuNorth1),
             "eu-south-1" | "eusouth1" => Ok(Region::EuSouth1),
+            "eu-south-2" | "eusouth2" => Ok(Region::EuSouth2),
+            "il-central-1" | "ilcentral1" => Ok(Region::IlCentral1),
+            "me-central-1" | "mecentral1" => Ok(Region::MeCentral1),
             "me-south-1" | "mesouth1" => Ok(Region::MeSouth1),
+            "mx-central-1" | "mxcentral1" => Ok(Region::MxCentral1),
             "sa-east-1" | "saeast1" => Ok(Region::SaEast1),
             "us-east-1" | "useast1" => Ok(Region::UsEast1),
             "us-east-2" | "useast2" => Ok(Region::UsEast2),
@@ -313,20 +378,33 @@ mod tests {
             "Not a valid AWS region: foo".to_owned()
         );
         assert_eq!("ap-east-1".parse(), Ok(Region::ApEast1));
+        assert_eq!("ap-east-2".parse(), Ok(Region::ApEast2));
         assert_eq!("ap-northeast-1".parse(), Ok(Region::ApNortheast1));
         assert_eq!("ap-northeast-2".parse(), Ok(Region::ApNortheast2));
         assert_eq!("ap-northeast-3".parse(), Ok(Region::ApNortheast3));
         assert_eq!("ap-south-1".parse(), Ok(Region::ApSouth1));
+        assert_eq!("ap-south-2".parse(), Ok(Region::ApSouth2));
         assert_eq!("ap-southeast-1".parse(), Ok(Region::ApSoutheast1));
         assert_eq!("ap-southeast-2".parse(), Ok(Region::ApSoutheast2));
+        assert_eq!("ap-southeast-3".parse(), Ok(Region::ApSoutheast3));
+        assert_eq!("ap-southeast-4".parse(), Ok(Region::ApSoutheast4));
+        assert_eq!("ap-southeast-5".parse(), Ok(Region::ApSoutheast5));
+        assert_eq!("ap-southeast-6".parse(), Ok(Region::ApSoutheast6));
+        assert_eq!("ap-southeast-7".parse(), Ok(Region::ApSoutheast7));
         assert_eq!("ca-central-1".parse(), Ok(Region::CaCentral1));
+        assert_eq!("ca-west-1".parse(), Ok(Region::CaWest1));
         assert_eq!("eu-central-1".parse(), Ok(Region::EuCentral1));
+        assert_eq!("eu-central-2".parse(), Ok(Region::EuCentral2));
         assert_eq!("eu-west-1".parse(), Ok(Region::EuWest1));
         assert_eq!("eu-west-2".parse(), Ok(Region::EuWest2));
         assert_eq!("eu-west-3".parse(), Ok(Region::EuWest3));
         assert_eq!("eu-north-1".parse(), Ok(Region::EuNorth1));
         assert_eq!("eu-south-1".parse(), Ok(Region::EuSouth1));
+        assert_eq!("eu-south-2".parse(), Ok(Region::EuSouth2));
+        assert_eq!("il-central-1".parse(), Ok(Region::IlCentral1));
+        assert_eq!("me-central-1".parse(), Ok(Region::MeCentral1));
         assert_eq!("me-south-1".parse(), Ok(Region::MeSouth1));
+        assert_eq!("mx-central-1".parse(), Ok(Region::MxCentral1));
         assert_eq!("sa-east-1".parse(), Ok(Region::SaEast1));
         assert_eq!("us-east-1".parse(), Ok(Region::UsEast1));
         assert_eq!("us-east-2".parse(), Ok(Region::UsEast2));
@@ -342,20 +420,33 @@ mod tests {
     #[test]
     fn region_serialize_deserialize() {
         assert_tokens(&Region::ApEast1, &tokens_for_region("ap-east-1"));
+        assert_tokens(&Region::ApEast2, &tokens_for_region("ap-east-2"));
         assert_tokens(&Region::ApNortheast1, &tokens_for_region("ap-northeast-1"));
         assert_tokens(&Region::ApNortheast2, &tokens_for_region("ap-northeast-2"));
         assert_tokens(&Region::ApNortheast3, &tokens_for_region("ap-northeast-3"));
         assert_tokens(&Region::ApSouth1, &tokens_for_region("ap-south-1"));
+        assert_tokens(&Region::ApSouth2, &tokens_for_region("ap-south-2"));
         assert_tokens(&Region::ApSoutheast1, &tokens_for_region("ap-southeast-1"));
         assert_tokens(&Region::ApSoutheast2, &tokens_for_region("ap-southeast-2"));
+        assert_tokens(&Region::ApSoutheast3, &tokens_for_region("ap-southeast-3"));
+        assert_tokens(&Region::ApSoutheast4, &tokens_for_region("ap-southeast-4"));
+        assert_tokens(&Region::ApSoutheast5, &tokens_for_region("ap-southeast-5"));
+        assert_tokens(&Region::ApSoutheast6, &tokens_for_region("ap-southeast-6"));
+        assert_tokens(&Region::ApSoutheast7, &tokens_for_region("ap-southeast-7"));
         assert_tokens(&Region::CaCentral1, &tokens_for_region("ca-central-1"));
+        assert_tokens(&Region::CaWest1, &tokens_for_region("ca-west-1"));
         assert_tokens(&Region::EuCentral1, &tokens_for_region("eu-central-1"));
+        assert_tokens(&Region::EuCentral2, &tokens_for_region("eu-central-2"));
         assert_tokens(&Region::EuWest1, &tokens_for_region("eu-west-1"));
         assert_tokens(&Region::EuWest2, &tokens_for_region("eu-west-2"));
         assert_tokens(&Region::EuWest3, &tokens_for_region("eu-west-3"));
         assert_tokens(&Region::EuNorth1, &tokens_for_region("eu-north-1"));
         assert_tokens(&Region::EuSouth1, &tokens_for_region("eu-south-1"));
+        assert_tokens(&Region::EuSouth2, &tokens_for_region("eu-south-2"));
+        assert_tokens(&Region::IlCentral1, &tokens_for_region("il-central-1"));
+        assert_tokens(&Region::MeCentral1, &tokens_for_region("me-central-1"));
         assert_tokens(&Region::MeSouth1, &tokens_for_region("me-south-1"));
+        assert_tokens(&Region::MxCentral1, &tokens_for_region("mx-central-1"));
         assert_tokens(&Region::SaEast1, &tokens_for_region("sa-east-1"));
         assert_tokens(&Region::UsEast1, &tokens_for_region("us-east-1"));
         assert_tokens(&Region::UsEast2, &tokens_for_region("us-east-2"));
