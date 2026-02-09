@@ -38,7 +38,6 @@ tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
 
 [dependencies.rusoto_credential]
 version = "0.46.0"
-path = "../credential"
 
 [dev-dependencies]
 serde_json = "1"
